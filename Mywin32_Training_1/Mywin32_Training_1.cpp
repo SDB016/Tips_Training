@@ -12,7 +12,15 @@ void UserProc(int a_id) // Callback function
 
 struct WINDCLASS
 {
+	int size;
 	void (*p_user_proc)(int);
+};
+
+struct WINDCLASSEX
+{
+	int size;
+	void (*p_user_proc)(int);
+	int data;
 };
 
 void AppRun(WINDCLASS *ap_wnd_class)
