@@ -4,16 +4,20 @@
 #include<malloc.h> // For malloc, free
 
 
-#define CALLBACK __stdcall
 
-void CALLBACK UserProc(int a_id) // Callback function
+void UserProc(int a_id) // Callback function
 {
 
 }
 
-void AppRun(void(*ap_user_proc)(int))
+struct WINDCLASS
 {
-	(*ap_user_proc)(3);
+	void (*p_user_proc)(int);
+};
+
+void AppRun(WINDCLASS *ap_wnd_class)
+{
+	ap_wnd_class->p_user_proc(3);
 }
 
 void OS()
