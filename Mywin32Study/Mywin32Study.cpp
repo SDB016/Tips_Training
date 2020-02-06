@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "framework.h"
-
+ 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     if (uMsg == WM_DESTROY) {   // WM_CLOSE 처리후에 들어오는 메시지
