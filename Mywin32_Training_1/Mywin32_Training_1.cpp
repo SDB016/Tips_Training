@@ -8,9 +8,9 @@ void UserProc(int a_id)
 
 }
 
-void AppRun()
+void AppRun(void(*ap_user_proc)(int))
 {
-	UserProc(2);
+	(*ap_user_proc)(3);
 }
 
 void OS()
