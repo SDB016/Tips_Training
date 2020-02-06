@@ -3,7 +3,7 @@
 #include<stdio.h> // For printf
 #include<malloc.h> // For malloc, free
 
-void UserProc(int a_id)
+void CALLBACK_UserProc(int a_id) // Callback function
 {
 
 }
