@@ -6,8 +6,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     if (uMsg == WM_LBUTTONDOWN)
     {
         HDC h_dc = GetDC(hWnd);
+        HPEN h_pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+        SelectObject(h_dc, h_pen);
+        
         Rectangle(h_dc, 10, 10, 100, 100);
+        DeleteObject(h_pen);
         ReleaseDC(hWnd, h_dc);
+
     } else if (uMsg == WM_DESTROY) {   // WM_CLOSE 처리후에 들어오는 메시지
         PostQuitMessage(0);  // 자신의 메시지 큐에 WM_QUIT 메시지를 넣는다!
     }
