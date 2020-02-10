@@ -3,12 +3,11 @@
  
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    if (uMsg == WM_CLOSE)
+    if (uMsg == WM_LBUTTONDOWN)
     {
-        if (IDCANCEL == MessageBox(hWnd, L"내용", L"제목", MB_OKCANCEL))
-        {
-            return 1;
-        }
+        HDC h_dc = GetDC(hWnd);
+        Rectangle(h_dc, 10, 10, 100, 100);
+        ReleaseDC(hWnd, h_dc);
     } else if (uMsg == WM_DESTROY) {   // WM_CLOSE 처리후에 들어오는 메시지
         PostQuitMessage(0);  // 자신의 메시지 큐에 WM_QUIT 메시지를 넣는다!
     }
