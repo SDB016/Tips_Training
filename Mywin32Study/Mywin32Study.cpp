@@ -12,7 +12,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         
         Rectangle(h_dc, 10, 10, 100, 100);
         SelectObject(h_dc, h_old_pen);
-        DeleteObject(h_pen); //DeleteObject(SelectObject(h_dc, h_old_pen));
+        DeleteObject(h_pen);
         ReleaseDC(hWnd, h_dc);
 
     } else if (uMsg == WM_DESTROY) {   // WM_CLOSE 처리후에 들어오는 메시지
