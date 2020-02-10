@@ -7,9 +7,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
         HDC h_dc = GetDC(hWnd);
         HPEN h_pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-        SelectObject(h_dc, h_pen);
+        
+        HGDIOBJ h_old_pen = SelectObject(h_dc, h_pen);
         
         Rectangle(h_dc, 10, 10, 100, 100);
+        SelectObject(h_dc, h_old_pen);
         DeleteObject(h_pen);
         ReleaseDC(hWnd, h_dc);
 
