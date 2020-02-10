@@ -10,8 +10,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         HBRUSH h_brush = CreateSolidBrush(RGB(0, 0, 255));
         HGDIOBJ h_old_brush = SelectObject(h_dc, h_brush);
         HGDIOBJ h_old_pen = SelectObject(h_dc, h_pen);
-        
-        Rectangle(h_dc, 10, 10, 100, 100);
+
+        int y = HIWORD(lParam); // (lParam >> 16) & 0x0000FFFF;
+        int x = LOWORD(lParam); // lParam & 0x0000FFFF;
+
+        Rectangle(h_dc, x-20, y-20, x+20, y+20);
         SelectObject(h_dc, h_old_pen);
         SelectObject(h_dc, h_old_brush);
         DeleteObject(h_pen); //DeleteObject(SelectObject(h_dc, h_old_pen));
