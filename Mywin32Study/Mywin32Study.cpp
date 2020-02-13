@@ -20,8 +20,11 @@ public:
        ReleaseDC(mh_wnd, mh_dc);
     }
 
-
-};
+   void Rectangle(int a_sx, int a_sy, int a_ex, int a_ey)
+   {
+       ::Rectangle(mh_dc, a_sx, a_sy, a_ex, a_ey);
+   }
+ };
 
 
 
@@ -51,6 +54,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }else if (uMsg == WM_LBUTTONDOWN)
     {            
         CClientDC dc(hWnd);
+        dc.Rectangle(10, 10, 100, 100);
 
         g_y = HIWORD(lParam); // (lParam >> 16) & 0x0000FFFF;
         g_x = LOWORD(lParam); // lParam & 0x0000FFFF;
