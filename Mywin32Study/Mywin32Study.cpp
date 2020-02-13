@@ -1,28 +1,36 @@
 ﻿#include "pch.h"
 #include "framework.h"
+
+int g_x=-30, g_y=-30;
  
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    if (uMsg == WM_LBUTTONDOWN)
-    {
-        HDC h_dc = GetDC(hWnd);
+    if (uMsg == WM_PAINT) {
+        PAINTSTRUCT ps;
+        HDC h_dc = BeginPaint(hWnd, &ps);
+
         HPEN h_pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
         HBRUSH h_brush = CreateSolidBrush(RGB(0, 0, 255));
         HGDIOBJ h_old_brush = SelectObject(h_dc, h_brush);
-        HGDIOBJ h_old_pen = SelectObject(h_dc, h_pen);
-
-        int y = HIWORD(lParam); // (lParam >> 16) & 0x0000FFFF;
-        int x = LOWORD(lParam); // lParam & 0x0000FFFF;
-
-        Rectangle(h_dc, x-20, y-20, x+20, y+20);
+        HGDIOBJ h_old_pen = SelectObject(h_dc, h_pen);       
+        Rectangle(h_dc, g_x-10, g_y-10, g_x+10,  g_y+10);
         SelectObject(h_dc, h_old_pen);
         SelectObject(h_dc, h_old_brush);
         DeleteObject(h_pen); //DeleteObject(SelectObject(h_dc, h_old_pen));
-        ReleaseDC(hWnd, h_dc);
+        DeleteObject(h_brush);
+        EndPaint(hWnd, &ps);
+
+        return 1;
+    }else if (uMsg == WM_LBUTTONDOWN)
+    {            
+        g_y = HIWORD(lParam); // (lParam >> 16) & 0x0000FFFF;
+        g_x = LOWORD(lParam); // lParam & 0x0000FFFF;
+        InvalidateRect(hWnd, NULL, FALSE);       
 
     } else if (uMsg == WM_DESTROY) {   // WM_CLOSE 처리후에 들어오는 메시지
         PostQuitMessage(0);  // 자신의 메시지 큐에 WM_QUIT 메시지를 넣는다!
     }
+    
 
     // 개발자가 처리하지 않은 메시지들을 처리한다!
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
