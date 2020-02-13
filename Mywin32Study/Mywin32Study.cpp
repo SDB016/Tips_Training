@@ -2,52 +2,59 @@
 #include "framework.h"
 
 
-class CClientDC 
+class CDC
 {
 protected:
     HDC mh_dc;
     HWND mh_wnd; // m_hWnd
 
 public:
-    CClientDC(HWND ah_wnd)
+    CDC(HWND ah_wnd)
+    {
+        mh_wnd = ah_wnd;
+    }
+
+    virtual ~CDC()
+    {
+    }
+
+    void Rectangle(int a_sx, int a_sy, int a_ex, int a_ey)
+    {
+        ::Rectangle(mh_dc, a_sx, a_sy, a_ex, a_ey);
+    }
+};
+
+
+class CClientDC : public CDC
+{
+protected:
+
+public:
+    CClientDC(HWND ah_wnd) : CDC(ah_wnd) // CDC(ah_wnd)가 먼저 실행
     {
         mh_dc = GetDC(ah_wnd);
-        mh_wnd = ah_wnd;
     }
 
    virtual ~CClientDC()
     {
        ReleaseDC(mh_wnd, mh_dc);
     }
-
-   void Rectangle(int a_sx, int a_sy, int a_ex, int a_ey)
-   {
-       ::Rectangle(mh_dc, a_sx, a_sy, a_ex, a_ey);
-   }
  };
 
-class CPaintDC
+class CPaintDC:public CDC
 {
 protected:
     PAINTSTRUCT m_ps;
-    HDC mh_dc;
-    HWND mh_wnd; // m_hWnd
 
 public:
-    CPaintDC(HWND ah_wnd)
+    CPaintDC(HWND ah_wnd) : CDC(ah_wnd)
     {
         mh_dc = BeginPaint(ah_wnd,&m_ps);
-        mh_wnd = ah_wnd;
     }
 
     virtual ~CPaintDC()
     {
         EndPaint(mh_wnd, &m_ps);
-    }
-
-    void Rectangle(int a_sx, int a_sy, int a_ex, int a_ey)
-    {
-        ::Rectangle(mh_dc, a_sx, a_sy, a_ex, a_ey);
     }
 };
 
