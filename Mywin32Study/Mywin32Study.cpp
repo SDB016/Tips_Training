@@ -8,7 +8,17 @@ protected:
     HDC mh_dc;
     HWND mh_wnd; // m_hWnd
 
+public:
+    CClientDC(HWND ah_wnd)
+    {
+        mh_dc = GetDC(ah_wnd);
+        mh_wnd = ah_wnd;
+    }
 
+   virtual ~CClientDC()
+    {
+       ReleaseDC(mh_wnd, mh_dc);
+    }
 
 
 };
@@ -40,6 +50,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         return 1;
     }else if (uMsg == WM_LBUTTONDOWN)
     {            
+        CClientDC dc(hWnd);
+
         g_y = HIWORD(lParam); // (lParam >> 16) & 0x0000FFFF;
         g_x = LOWORD(lParam); // lParam & 0x0000FFFF;
         InvalidateRect(hWnd, NULL, FALSE);       
