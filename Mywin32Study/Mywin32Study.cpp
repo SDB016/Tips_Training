@@ -1,6 +1,23 @@
 ﻿#include "pch.h"
 #include "framework.h"
 
+
+class CClientDC 
+{
+protected:
+    HDC mh_dc;
+    HWND mh_wnd; // m_hWnd
+
+
+
+
+};
+
+
+
+
+
+
 int g_x=-30, g_y=-30;
  
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
