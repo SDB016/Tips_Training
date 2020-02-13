@@ -26,7 +26,30 @@ public:
    }
  };
 
+class CPaintDC
+{
+protected:
+    PAINTSTRUCT m_ps;
+    HDC mh_dc;
+    HWND mh_wnd; // m_hWnd
 
+public:
+    CPaintDC(HWND ah_wnd)
+    {
+        mh_dc = BeginPaint(ah_wnd,&m_ps);
+        mh_wnd = ah_wnd;
+    }
+
+    virtual ~CPaintDC()
+    {
+        EndPaint(mh_wnd, &m_ps);
+    }
+
+    void Rectangle(int a_sx, int a_sy, int a_ex, int a_ey)
+    {
+        ::Rectangle(mh_dc, a_sx, a_sy, a_ex, a_ey);
+    }
+};
 
 
 
@@ -36,19 +59,9 @@ int g_x=-30, g_y=-30;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     if (uMsg == WM_PAINT) {
-        PAINTSTRUCT ps;
-        HDC h_dc = BeginPaint(hWnd, &ps);
 
-        HPEN h_pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-        HBRUSH h_brush = CreateSolidBrush(RGB(0, 0, 255));
-        HGDIOBJ h_old_brush = SelectObject(h_dc, h_brush);
-        HGDIOBJ h_old_pen = SelectObject(h_dc, h_pen);       
-        Rectangle(h_dc, g_x-10, g_y-10, g_x+10,  g_y+10);
-        SelectObject(h_dc, h_old_pen);
-        SelectObject(h_dc, h_old_brush);
-        DeleteObject(h_pen); //DeleteObject(SelectObject(h_dc, h_old_pen));
-        DeleteObject(h_brush);
-        EndPaint(hWnd, &ps);
+        CPaintDC dc(hWnd);
+        dc.Rectangle( g_x-10, g_y-10, g_x+10,  g_y+10);
 
         return 1;
     }else if (uMsg == WM_LBUTTONDOWN)
