@@ -31,6 +31,7 @@ void CExamMFCDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CExamMFCDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_COPY_BUTTON, &CExamMFCDlg::OnBnClickedCopyButton)
 END_MESSAGE_MAP()
 
 
@@ -86,3 +87,10 @@ HCURSOR CExamMFCDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CExamMFCDlg::OnBnClickedCopyButton()
+{
+	int num = GetDlgItemInt(IDC_VALUE_EDIT);
+	SetDlgItemInt(IDC_SHOW_EDIT, num);
+}
