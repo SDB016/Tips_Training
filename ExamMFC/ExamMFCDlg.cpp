@@ -94,5 +94,8 @@ void CExamMFCDlg::OnBnClickedCopyButton()
 	CString str;
 
 	GetDlgItemText(IDC_VALUE_EDIT, str);
+	double num = _wtof(str);
+	num += 0.2;
+	str.Format(L"%g", num);
 	SetDlgItemText(IDC_SHOW_EDIT, str);
 }
