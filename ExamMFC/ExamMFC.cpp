@@ -41,7 +41,7 @@ BOOL CExamMFCApp::InitInstance()
 
 	CExamMFCDlg dlg;
 	m_pMainWnd = &dlg;
-	dlg.DoModal();
+	dlg.DoModal(); //DoModal=자식윈도우가 떠있으면 부모윈도우 클릭이 안됨, ModalList=떠있어도 클릭가능
+
 	return FALSE;
 }
-
