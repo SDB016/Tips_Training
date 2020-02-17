@@ -91,6 +91,8 @@ HCURSOR CExamMFCDlg::OnQueryDragIcon()
 
 void CExamMFCDlg::OnBnClickedCopyButton()
 {
-	int num = GetDlgItemInt(IDC_VALUE_EDIT);
-	SetDlgItemInt(IDC_SHOW_EDIT, num);
+	CString str;
+
+	GetDlgItemText(IDC_VALUE_EDIT, str);
+	SetDlgItemText(IDC_SHOW_EDIT, str);
 }
