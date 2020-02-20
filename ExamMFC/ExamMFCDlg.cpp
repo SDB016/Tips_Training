@@ -115,6 +115,10 @@ void CExamMFCDlg::OnSelchangeList1()  //ListBoxNotify 일때 발생하는 이벤
 	int index = m_my_list.GetCurSel();
 	CString str;
 	m_my_list.GetText(index, str);
+
 	SetDlgItemText(IDC_VALUE_EDIT, str);
 
 }
+
+//콤보박스는 리스트박스와 동일하지만 GetText하면 선택된 정보(맨 위의 정보)
+//GetLBText하면 세부 설정에서 선택된 정보 (아래 화살표 눌렀을 때 밑의 정보)
