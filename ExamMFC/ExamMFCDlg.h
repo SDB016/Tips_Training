@@ -33,5 +33,5 @@ protected:
 public:
 	afx_msg void OnBnClickedCopyButton();
 	CListBox m_my_list;
-	afx_msg void OnLbnSelchangeList1();
+	afx_msg void OnSelchangeList1();
 };

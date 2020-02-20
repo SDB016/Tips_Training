@@ -33,7 +33,7 @@ BEGIN_MESSAGE_MAP(CExamMFCDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_COPY_BUTTON, &CExamMFCDlg::OnBnClickedCopyButton)
-	ON_LBN_SELCHANGE(IDC_LIST1, &CExamMFCDlg::OnLbnSelchangeList1)
+	ON_LBN_SELCHANGE(IDC_LIST1, &CExamMFCDlg::OnSelchangeList1)
 END_MESSAGE_MAP()
 
 
@@ -49,9 +49,9 @@ BOOL CExamMFCDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	int index = m_my_list.AddString(L"안녕하세요"); // Addstring이나 insertstring의 반환값은 추가된 인덱스 값
-	m_my_list.InsertString(-1, L"감사합니다");  // 인덱스가 -1이면 마지막에 추가
-	m_my_list.SetCurSel(index);
+	//int index = m_my_list.AddString(L"안녕하세요"); // Addstring이나 insertstring의 반환값은 추가된 인덱스 값
+	//m_my_list.InsertString(-1, L"감사합니다");  // 인덱스가 -1이면 마지막에 추가
+	//m_my_list.SetCurSel(index);
 	
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
@@ -106,10 +106,15 @@ void CExamMFCDlg::OnBnClickedCopyButton()
 	SetDlgItemText(IDC_SHOW_EDIT, str);
 	int index = m_my_list.InsertString(0, str); //에디트 컨트롤에 있는 값을 리스트박스에 복사
 	m_my_list.SetCurSel(index);
+	
 }
 
 
-void CExamMFCDlg::OnLbnSelchangeList1()
+void CExamMFCDlg::OnSelchangeList1()  //ListBoxNotify 일때 발생하는 이벤트
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	int index = m_my_list.GetCurSel();
+	CString str;
+	m_my_list.GetText(index, str);
+	SetDlgItemText(IDC_VALUE_EDIT, str);
+
 }
