@@ -1,0 +1,12 @@
+listbox 함수들
+
+addstring 순서없이 추가
+insertstring 원하는 곳에 추가
+deletestring 삭제
+resetstring 모두 삭제
+gettext 가져오기
+setcursel 
+getcursel 
+findstrring 찾기
+findstringex 정확하게 찾기
+getcount 인덱스 갯수 가져오기
