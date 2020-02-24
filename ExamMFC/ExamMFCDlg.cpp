@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CExamMFCDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_COPY_BUTTON, &CExamMFCDlg::OnBnClickedCopyButton)
 	ON_LBN_SELCHANGE(IDC_LIST1, &CExamMFCDlg::OnSelchangeList1)
+	ON_MESSAGE(32100, &CExamMFCDlg::On32100)
 END_MESSAGE_MAP()
 
 
@@ -47,6 +48,8 @@ BOOL CExamMFCDlg::OnInitDialog()
 	//  프레임워크가 이 작업을 자동으로 수행합니다.
 	SetIcon(m_hIcon, TRUE);			// 큰 아이콘을 설정합니다.
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
+
+	m_copy_btn.SubclassDlgItem(IDC_COPY_BUTTON, this);
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	//int index = m_my_list.AddString(L"안녕하세요"); // Addstring이나 insertstring의 반환값은 추가된 인덱스 값
@@ -115,6 +118,7 @@ void CExamMFCDlg::OnSelchangeList1()  //ListBoxNotify 일때 발생하는 이벤
 	int index = m_my_list.GetCurSel();
 	CString str;
 	m_my_list.GetText(index, str);
+	m_my_list.GetText(index, str);
 
 	SetDlgItemText(IDC_VALUE_EDIT, str);
 
@@ -122,3 +126,11 @@ void CExamMFCDlg::OnSelchangeList1()  //ListBoxNotify 일때 발생하는 이벤
 
 //콤보박스는 리스트박스와 동일하지만 GetText하면 선택된 정보(맨 위의 정보)
 //GetLBText하면 세부 설정에서 선택된 정보 (아래 화살표 눌렀을 때 밑의 정보)
+
+afx_msg LRESULT CExamMFCDlg::On32100(WPARAM wParam, LPARAM lParam)
+{
+
+	int index = m_my_list.InsertString(-1, L"버튼 눌러짐");
+	m_my_list.SetCurSel(index);
+	return 0;
+}

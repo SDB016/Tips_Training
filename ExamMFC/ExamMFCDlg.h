@@ -4,10 +4,14 @@
 
 #pragma once
 
+#include "DB_Button.h"
 
 // CExamMFCDlg 대화 상자
 class CExamMFCDlg : public CDialogEx
 {
+private:
+	DB_Button m_copy_btn;
+
 // 생성입니다.
 public:
 	CExamMFCDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
@@ -34,4 +38,6 @@ public:
 	afx_msg void OnBnClickedCopyButton();
 	CListBox m_my_list;
 	afx_msg void OnSelchangeList1();
+protected:
+	afx_msg LRESULT On32100(WPARAM wParam, LPARAM lParam);
 };

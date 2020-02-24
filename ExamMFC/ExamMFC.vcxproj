@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DB_Button.h" />
     <ClInclude Include="ExamMFC.h" />
     <ClInclude Include="ExamMFCDlg.h" />
     <ClInclude Include="framework.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DB_Button.cpp" />
     <ClCompile Include="ExamMFC.cpp" />
     <ClCompile Include="ExamMFCDlg.cpp" />
     <ClCompile Include="pch.cpp">
