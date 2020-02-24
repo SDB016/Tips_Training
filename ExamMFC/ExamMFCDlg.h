@@ -11,6 +11,7 @@ class CExamMFCDlg : public CDialogEx
 {
 private:
 	DB_Button m_copy_btn;
+	DB_Button m_ok_btn;
 
 // 생성입니다.
 public:

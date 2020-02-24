@@ -49,12 +49,12 @@ void DB_Button::OnPaint()
 	if (m_toggle_flag)
 	{
 		dc.FillSolidRect(r, RGB(240, 0, 0));
-		dc.SetTextColor(RGB(255, 255, 255));
+		dc.SetTextColor(RGB(0, 0, 0));
 	}
 	else
 	{
 		dc.FillSolidRect(r, RGB(130, 0, 0));
-		dc.SetTextColor(RGB(0,0,0));
+		dc.SetTextColor(RGB(255, 255, 255));
 	}
 
 	CString str;

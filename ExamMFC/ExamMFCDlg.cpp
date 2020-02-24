@@ -50,6 +50,7 @@ BOOL CExamMFCDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	m_copy_btn.SubclassDlgItem(IDC_COPY_BUTTON, this);
+	m_ok_btn.SubclassDlgItem(IDOK, this);
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	//int index = m_my_list.AddString(L"안녕하세요"); // Addstring이나 insertstring의 반환값은 추가된 인덱스 값
@@ -117,7 +118,6 @@ void CExamMFCDlg::OnSelchangeList1()  //ListBoxNotify 일때 발생하는 이벤
 {
 	int index = m_my_list.GetCurSel();
 	CString str;
-	m_my_list.GetText(index, str);
 	m_my_list.GetText(index, str);
 
 	SetDlgItemText(IDC_VALUE_EDIT, str);
